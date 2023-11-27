@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Node.js와 MongoDB의 프로젝트팁" />
+<meta name="author" content="주홍철:어비스" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="서론" />
+<meta property="og:description" content="서론" />
+<link rel="canonical" href="https://kakaoenterprise.github.io/papers/%EB%B8%94%EB%A1%9C%EA%B7%B8" />
+<meta property="og:url" content="https://kakaoenterprise.github.io/papers/%EB%B8%94%EB%A1%9C%EA%B7%B8" />
+<meta property="og:site_name" content="카카오엔터프라이즈 AI Research" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-11-27T00:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Node.js와 MongoDB의 프로젝트팁" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"주홍철:어비스"},"dateModified":"2023-11-27T00:00:00+09:00","datePublished":"2023-11-27T00:00:00+09:00","description":"서론","headline":"Node.js와 MongoDB의 프로젝트팁","mainEntityOfPage":{"@type":"WebPage","@id":"https://kakaoenterprise.github.io/papers/%EB%B8%94%EB%A1%9C%EA%B7%B8"},"url":"https://kakaoenterprise.github.io/papers/%EB%B8%94%EB%A1%9C%EA%B7%B8"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+  <title> Node.js와 MongoDB의 프로젝트팁 | 카카오엔터프라이즈 AI Research </title>
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+  <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/assets/favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+
+  <!-- Icon -->
+  <script src="https://kit.fontawesome.com/29661d1774.js" crossorigin="anonymous"></script>
+
+  <!-- RSS -->
+  <link type="application/atom+xml" rel="alternate" href="https://kakaoenterprise.github.io/feed.xml" title="카카오엔터프라이즈 AI Research" />
+
+  <!-- Google Analytics-->
+  
+
+  <!-- Google Search -->
+  <meta name="google-site-verification" content="g1aJ_c07rYqVQwi6hpDDBI9jGk1wrEqOOj2bJI_CWHE" />
+
+  <!-- Naver Search-->
+  <meta name="naver-site-verification" content="faa46269506eaffea0caefdeeb1feb5166961947" />
+
+  <!-- katex -->
+  
+</head>
+
+  <body>
+    <nav class="nav">
+  <div class="nav-container">
+    <a href="/">
+      <h2 class="nav-title">천각</h2>
+    </a>
+    <ul>
+      <li><a href="/papers">Papers</a></li>
+      <li><a href="https://tech.kakaoenterprise.com/" target="_blank">Tech&</a></li>
+      <li><a href="http://kko.to/icW8PeHsT" target="_blank">Careers</a></li>
+    </ul>
+  </div>
+</nav>
+
+    <main>
+      <article class="post">
+  <header class="post-header">
+    <h4 class="catalogue-research-area">BE/node.js</h4>
+    <h1 class="post-title">Node.js와 MongoDB의 프로젝트팁</h1>
+
+    
+
+    
+
+    주홍철(어비스)
+
+    <h4>
+        
+          나와유 배방점 모임 / 2023.12.02
+        
+    </h4>
+
+    <h4></h4>
+
+    
+      <div class="link-button-group">
+        
+          <a href="https://arxiv.org/pdf/2305.10823.pdf" target="_blank">
+            <button class="link-button">
+              <i class="far fa-file-alt"></i> Paper
+            </button>
+          </a>
+        
+
+        
+
+        
+      </div>
+    
+  </header>
+
+  <div class="post-line"></div>
+
+  <div class="post-body">
+    <h1 id="서론">서론</h1>
+
+<p>MongoDB와 Node.js를 이용해서 서비스를 만들 때 코드리팩토링은 반드시 필요하다. 그렇다면 어떻게 해야할까?  요새 주먹구구식으로 만들다가 열심히 리팩토링 중인데 죽겠다 ㅠㅠ<br />
+<img src="/assets/img/001.png" alt="Alt text" /></p>
+<h1 id="본론">본론</h1>
+<p>오류의 연속.. ㅠ</p>
+<blockquote>
+  <ol>
+    <li>코드 모듈화
+모델, 컨트롤러, 유틸 등 폴더기반 모듈화를 해야 함.  라우터 분리</li>
+  </ol>
+</blockquote>
+
+  </div>
+
+  <div class="post-line"></div>
+
+  <div class="post-tag-box-container">
+    
+  </div>
+</article>
+<div class="pagination">
+    <a onclick="window.history.back()" class="left arrow" style="cursor: pointer;">&#8592; 목록으로</a>
+</div>
+
+    </main>
+    <footer>
+  <a class="footer-link" href="https://github.com/kakaoenterprise" target="_blank">
+    <img src="/assets/GitHub-Mark.png" alt="Kakao Enterprise GitHub" />GitHub</a>
+  <br/>
+  <a class="footer-copyright">Copyright © 천각 All rights reserved.</a>
+
+</footer>
+
+
+    <!-- Naver Analytics -->
+    <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+    <script type="text/javascript">
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "d6495f190ca3e0";
+    if(window.wcs) {
+    wcs_do();
+    }
+    </script>
+  </body>
+</html>

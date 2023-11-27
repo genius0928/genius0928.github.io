@@ -1,0 +1,42 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {% seo title=false %}
+  {% if page.url == '/' %}
+  <title> {{ site.title }} </title>
+  {% else %}
+  <title> {{ page.title }} | {{ site.title }} </title>
+  {% endif %}
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+  <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{ "/assets/favicon-96x96.png" | relative_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "/assets/apple-icon-180x180.png" | relative_url }}">
+
+  <!-- Icon -->
+  <script src="https://kit.fontawesome.com/29661d1774.js" crossorigin="anonymous"></script>
+
+  <!-- RSS -->
+  {% feed_meta %}
+
+  <!-- Google Analytics-->
+  {% if site.google_analytics and jekyll.environment == 'production' %}
+  {% include analytics.html %}
+  {% endif %}
+
+  <!-- Google Search -->
+  <meta name="google-site-verification" content="g1aJ_c07rYqVQwi6hpDDBI9jGk1wrEqOOj2bJI_CWHE" />
+
+  <!-- Naver Search-->
+  <meta name="naver-site-verification" content="faa46269506eaffea0caefdeeb1feb5166961947" />
+
+  <!-- katex -->
+  {% if page.use-katex %}
+  {% include katex.html %}
+  {% endif %}
+</head>

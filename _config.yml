@@ -1,0 +1,48 @@
+# Site settings
+title:          카카오엔터프라이즈 AI Research
+description:    "카카오엔터프라이즈 AI Lab에서 발표한 AI 논문과 연구 성과를 소개합니다."
+internal_title: 천각
+url:            "https://kakaoenterprise.github.io"
+destination:    docs
+
+google_analytics: True
+
+# Author
+author:
+  name:         카카오엔터프라이즈
+
+# Build settings
+markdown:       kramdown
+include:
+  - _pages
+future:         true
+
+# Assets
+sass:
+  sass_dir:     _sass
+  style:        compressed
+
+# Gems
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-seo-tag
+  # - jemoji #Uncomment this to allow emoji in your post
+
+# Permalinks
+permalink:      /:categories/:slug
+paginate:       10
+
+# Excludes
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - tale.gemspec
+  - vendor
+  - CODEOWNERS
+  - CONTRIBUTING.md
+  - LICENSE
+  - NOTICE.md
+  - README.md
+  - build.sh
+  - serve.sh
