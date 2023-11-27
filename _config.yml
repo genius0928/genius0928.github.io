@@ -1,15 +1,15 @@
 # Site settings
-title:          카카오엔터프라이즈 AI Research
-description:    "카카오엔터프라이즈 AI Lab에서 발표한 AI 논문과 연구 성과를 소개합니다."
+title:         천각블로그
+description:    "천각블로그에서 발표한 게시글을 소개합니다."
 internal_title: 천각
-url:            "https://kakaoenterprise.github.io"
+url:            "https://genius0928.github.io/"
 destination:    docs
 
 google_analytics: True
 
 # Author
 author:
-  name:         카카오엔터프라이즈
+  name:         천각
 
 # Build settings
 markdown:       kramdown
