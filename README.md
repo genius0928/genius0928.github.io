@@ -15,3 +15,7 @@ bundle exec jekyll serve
 ```
 bundle exec jekyll build
 ```  
+
+## jekyll테마 
+카카오엔터프라이즈테마를 기반으로 만들었습니다. 
+[링크](https://github.com/kakaoenterprise/kakaoenterprise.github.io) 
