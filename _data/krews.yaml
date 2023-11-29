@@ -1,9 +1,14 @@
 zagabi:
   korean_name: 주홍철
   profile: zagabi.png 
-  description: 세계제일의 개발자
+  description: 개발왕
 
 you:
   korean_name: 유지은
   profile: you.png 
-  description: 윤석열라인의 개발자  
+  description: C++ 마스터 
+
+jae:
+  korean_name: 목재민
+  profile: jae.png 
+  description: 드립담당
