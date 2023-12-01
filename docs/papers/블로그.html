@@ -286,9 +286,29 @@ ctrl + c 등을 통해 서버가 종료될 때 클라이언트의 요청을 모�
 <span class="nx">app</span><span class="p">.</span><span class="nf">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">서버시작, http://127.0.0.1:3000/a</span><span class="dl">"</span><span class="p">))</span> 
 </code></pre></div></div>
 
-<h2 id="pm2">pm2</h2>
+<h2 id="그외">그외</h2>
+<h3 id="pm2">pm2</h3>
 <p>서버 모니터링과 안정적인 백그라운드 실행을 위해 pm2로 실행하는 것이 좋습니다. 
 <img src="https://pm2.io/images/home.gif" alt="pm2" /></p>
+
+<h3 id="db-연결을-최소화해라">DB 연결을 최소화해라</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A -&gt; DB
+B -&gt; DB
+</code></pre></div></div>
+
+<p>보다는</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A -&gt; C
+B -&gt; C
+C -&gt; DB
+</code></pre></div></div>
+<p>가 낫다.</p>
+
+<h3 id="type-체킹">type 체킹</h3>
+<p>왠만하면 타입스크립트로 정적타입시스템을 도입하는게 좋다.</p>
+
+<h3 id="date는-utc-기준으로">date는 UTC 기준으로.</h3>
+<p>date 같은 경우 배포하는 서버의 타임마다 다르다. UTC를 기준으로 로직을 설게하자.</p>
 
   </div>
 
