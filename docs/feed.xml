@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://genius0928.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://genius0928.github.io//" rel="alternate" type="text/html" /><updated>2023-12-01T23:13:27+09:00</updated><id>https://genius0928.github.io//feed.xml</id><title type="html">천각블로그</title><subtitle>천각블로그에서 발표한 게시글을 소개합니다.</subtitle><author><name>천각</name></author><entry><title type="html">Node.js Best Practices</title><link href="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8" rel="alternate" type="text/html" title="Node.js Best Practices" /><published>2023-11-27T00:00:00+09:00</published><updated>2023-11-27T00:00:00+09:00</updated><id>https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8</id><content type="html" xml:base="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8"><![CDATA[<p>Node.js로 서버를 구축할 때 어떤 것을 지키면 좋을까? Best Practices에 대해 알아봅시다.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://genius0928.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://genius0928.github.io//" rel="alternate" type="text/html" /><updated>2023-12-07T09:55:38+09:00</updated><id>https://genius0928.github.io//feed.xml</id><title type="html">천각블로그</title><subtitle>천각블로그에서 발표한 게시글을 소개합니다.</subtitle><author><name>천각</name></author><entry><title type="html">Node.js Best Practices</title><link href="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8" rel="alternate" type="text/html" title="Node.js Best Practices" /><published>2023-11-27T00:00:00+09:00</published><updated>2023-11-27T00:00:00+09:00</updated><id>https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8</id><content type="html" xml:base="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8"><![CDATA[<p>Node.js로 서버를 구축할 때 어떤 것을 지키면 좋을까? Best Practices에 대해 알아봅시다.</p>
 
 <h2 id="모듈화">모듈화</h2>
 <p>data, db, routes, test, utils 등으로 모듈화를 해야 합니다.</p>
@@ -205,4 +205,19 @@ C -&gt; DB
 <p>왠만하면 타입스크립트로 정적타입시스템을 도입하는게 좋다.</p>
 
 <h3 id="date는-utc-기준으로">date는 UTC 기준으로.</h3>
-<p>date 같은 경우 배포하는 서버의 타임마다 다르다. UTC를 기준으로 로직을 설게하자.</p>]]></content><author><name>zagabi</name></author><category term="papers" /><category term="node.js, mongodb" /><summary type="html"><![CDATA[Node.js로 서버를 구축할 때 어떤 것을 지키면 좋을까? Best Practices에 대해 알아봅시다.]]></summary></entry></feed>
+<p>date 같은 경우 배포하는 서버의 타임마다 다르다. UTC를 기준으로 로직을 설게하자.</p>
+
+<h3 id="서드파티-api를-사용할-때-주의할점">서드파티 API를 사용할 때 주의할점</h3>
+<p>보통적으로 많이 일어나는 문제는 연결이 안되는 문제가 발생합니다. 여러가지 이유로 해당 API가 불안정할 수 있기 때문에 그렇습니다. 예를 들어 urllib3 라이브러리를 사용한다면 <code class="language-plaintext highlighter-rouge">urllib3.exceptions.MaxRetryError</code> 오류가 나기도 합니다.  그럴 경우 다음부분을 확인해야 합니다.</p>
+
+<ol>
+  <li><strong>인터넷 연결 확인</strong>: 나의 컴퓨터나 서버가 안정적인 인터넷 연결을 가지고 있는지 확인해야 합니다.</li>
+  <li><strong>프록시 설정</strong>: 프록시 서버를 앞단에 두었다면 프록시 설정이 올바르게 구성되어 있는지 확인하세요. 잘못된 프록시 설정은 스크립트가 인터넷에 접근하는 것을 방해할 수도 있습니다.</li>
+  <li><strong>타임아웃 설정</strong>: 어차피 실패는 실패입니다. 적절한 타임아웃을 걸어서 fail fast하게 유도하는 것도 하나의 방법입니다.</li>
+  <li><strong>오류 처리</strong>: 뭐 어쩔 수 없습니다. 오류는 발생하니까요. 적절하게 오류처리해주어야 합니다.</li>
+  <li><strong>문서 또는 지원 문의</strong>: 가장 마지막 방법입니다. 해당 API를 관리하는 부서에게 문의를 해야 합니다.</li>
+</ol>
+
+<blockquote>
+  <p>오늘은 여기까지.</p>
+</blockquote>]]></content><author><name>zagabi</name></author><category term="papers" /><category term="node.js, mongodb" /><summary type="html"><![CDATA[Node.js로 서버를 구축할 때 어떤 것을 지키면 좋을까? Best Practices에 대해 알아봅시다.]]></summary></entry></feed>
