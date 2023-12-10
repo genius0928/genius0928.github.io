@@ -5,9 +5,23 @@
     <description>천각블로그에서 발표한 게시글을 소개합니다.</description>
     <link>https://genius0928.github.io//</link>
     <atom:link href="https://genius0928.github.io//rss" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 07 Dec 2023 09:55:38 +0900</pubDate>
-    <lastBuildDate>Thu, 07 Dec 2023 09:55:38 +0900</lastBuildDate>
+    <pubDate>Sun, 10 Dec 2023 18:51:20 +0900</pubDate>
+    <lastBuildDate>Sun, 10 Dec 2023 18:51:20 +0900</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>시계열 시뮬레이션 | 실전시계열 분석 4장</title>
+        <description></description>
+        <pubDate>Thu, 07 Dec 2023 00:00:00 +0900</pubDate>
+        <link>https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8</link>
+        <guid isPermaLink="true">https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8</guid>
+        
+        <category>python</category>
+        
+        
+        <category>papers</category>
+        
+      </item>
     
       <item>
         <title>Node.js Best Practices</title>
