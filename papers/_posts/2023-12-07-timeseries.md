@@ -196,3 +196,131 @@ for taxi_id, activities in first_five_taxis_data.items():
  
  
 ![Alt text](/assets/img/20231207/2.png)  
+ 
+## 오토인코더를 통한 주식 차트 시뮬레이션
+오토인코더 네트워크는 실제로 인코더와 디코더라는 두 개의 연결된 네트워크 쌍
+![아키텍처](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*2ijh2-e0PcYgYKbWYkbdsw.png)   
+ 
+기존 오토인코더의 문제점은 벡터 보간이 용이하지 않을 수 있음.ex) mnist에서 1과 7의 차이
+   
+### 변분 오토인코더(Variational Autoencoder, VAE)
+![아키텍처](https://blog.kakaocdn.net/dn/b30Uzl/btrxY4wKngj/SucVwitDrRtQvi1xTHdrR0/img.png)   
+여기서 나온 것이 바로 변분 오토인코더(Variational Autoencoder, VAE)임. 이는 딥러닝과 확률론을 결합한 생성적 모델 중 하나.  
+다음과 같은 구조를 가짐.
+
+1. 인코더 
+2. 리파라미터화 트릭 - 리파라미터화 트릭(Reparameterization Trick)
+3. 디코더 
+
+```python
+import yfinance as yf
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader, TensorDataset
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import preprocessing  
+import quandl 
+quandl_data_apple = quandl.get("WIKI/AAPL")
+quandl_data_amazon = quandl.get("WIKI/AMZN")
+quandl_data_msft = quandl.get("WIKI/MSFT") 
+# 1980 ~ 2018 까지의 데이터 : 고가 중심으로.
+msft_high_raw = (quandl_data_msft['High'].values).reshape(1,-1) 
+msft_high = preprocessing.normalize(msft_high_raw, norm='max', axis=1)
+msft_high = msft_high.reshape(msft_high.shape[1],)
+msft_max_high = np.max(msft_high_raw)
+ 
+apple_high_raw = (quandl_data_apple['High'].values).reshape(1,-1)
+apple_high = preprocessing.normalize(apple_high_raw, norm='max', axis=1)
+apple_high = apple_high.reshape(apple_high.shape[1],)
+apple_max_high = np.max(apple_high_raw)
+ 
+amazon_high_raw = (quandl_data_amazon['High'].values).reshape(1,-1)
+amazon_high = preprocessing.normalize(amazon_high_raw, norm='max', axis=1)
+amazon_high = amazon_high.reshape(amazon_high.shape[1],)
+amazon_max_high = np.max(amazon_high_raw)
+
+# Generate samples
+def generate_samples(data, sample_size):
+    n_samples = data.shape[0] // sample_size
+    return np.array([data[i*sample_size:(i+1)*sample_size] for i in range(n_samples)])
+
+test_data_points = 365
+sample_size = 365
+ 
+def split_data(high):
+    return high[:-test_data_points], high[-test_data_points:]
+
+msft_high_train, msft_high_test = split_data(msft_high)
+X_msft_train = generate_samples(msft_high_train, sample_size)
+X_msft_test = generate_samples(msft_high_test, sample_size)
+ 
+X_msft_train_tensor = torch.tensor(X_msft_train, dtype=torch.float32)
+X_msft_test_tensor = torch.tensor(X_msft_test, dtype=torch.float32)
+ 
+class VAE(nn.Module):
+    def __init__(self, input_size, latent_dim):
+        super(VAE, self).__init__()
+        # Encoder
+        self.fc1 = nn.Linear(input_size, 256)
+        self.fc21 = nn.Linear(256, latent_dim)
+        self.fc22 = nn.Linear(256, latent_dim)
+        # Decoder
+        self.fc3 = nn.Linear(latent_dim, 256)
+        self.fc4 = nn.Linear(256, input_size)
+
+    def encode(self, x):
+        h1 = F.relu(self.fc1(x))
+        return self.fc21(h1), self.fc22(h1)
+
+    def reparameterize(self, mu, logvar):
+        std = torch.exp(0.5 * logvar)
+        eps = torch.randn_like(std)
+        return mu + eps * std
+
+    def decode(self, z):
+        h3 = F.relu(self.fc3(z))
+        return torch.tanh(self.fc4(h3))
+
+    def forward(self, x):
+        mu, logvar = self.encode(x)
+        z = self.reparameterize(mu, logvar)
+        return self.decode(z), mu, logvar
+ 
+def loss_function(recon_x, x, mu, logvar):
+    BCE = F.mse_loss(recon_x, x.view(-1, sample_size))
+    KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
+    return BCE + KLD
+ 
+model = VAE(sample_size, latent_dim=1)
+optimizer = optim.Adam(model.parameters(), lr=0.01)
+train_loader = DataLoader(TensorDataset(X_msft_train_tensor), batch_size=32, shuffle=True)
+ 
+epochs = 300
+for epoch in range(epochs):
+    model.train()
+    train_loss = 0
+    for batch_idx, (data,) in enumerate(train_loader):
+        optimizer.zero_grad()
+        recon_batch, mu, logvar = model(data)
+        loss = loss_function(recon_batch, data, mu, logvar)
+        loss.backward()
+        train_loss += loss.item()
+        optimizer.step()
+ 
+model.eval()
+with torch.no_grad():
+    msft_simulated_high = model(X_msft_test_tensor)[0].numpy()
+
+```
+![Alt text](/assets/img/20231207/4.png)  
+
+### 참고자료 
+ - http://vision-explorer.reactive.ai/#/galaxy?_k=12fku3
+ - https://www.youtube.com/watch?v=o_peo6U7IRM&t=375s
+ - https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf
+ - https://medium.com/@ricardo.vrgl/generating-simulated-stock-price-data-using-a-variational-autoencoder-d18fc79fc623
+ 
+
+ 

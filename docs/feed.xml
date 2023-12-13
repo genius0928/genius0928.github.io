@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://genius0928.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://genius0928.github.io//" rel="alternate" type="text/html" /><updated>2023-12-10T18:51:20+09:00</updated><id>https://genius0928.github.io//feed.xml</id><title type="html">천각블로그</title><subtitle>천각블로그에서 발표한 게시글을 소개합니다.</subtitle><author><name>천각</name></author><entry><title type="html">시계열 시뮬레이션 | 실전시계열 분석 4장</title><link href="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8" rel="alternate" type="text/html" title="시계열 시뮬레이션 | 실전시계열 분석 4장" /><published>2023-12-07T00:00:00+09:00</published><updated>2023-12-07T00:00:00+09:00</updated><id>https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8</id><content type="html" xml:base="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://genius0928.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://genius0928.github.io//" rel="alternate" type="text/html" /><updated>2023-12-13T10:36:31+09:00</updated><id>https://genius0928.github.io//feed.xml</id><title type="html">천각블로그</title><subtitle>천각블로그에서 발표한 게시글을 소개합니다.</subtitle><author><name>천각</name></author><entry><title type="html">시계열 시뮬레이션 | 실전시계열 분석 4장</title><link href="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8" rel="alternate" type="text/html" title="시계열 시뮬레이션 | 실전시계열 분석 4장" /><published>2023-12-07T00:00:00+09:00</published><updated>2023-12-07T00:00:00+09:00</updated><id>https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8</id><content type="html" xml:base="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8"><![CDATA[<blockquote>
   <p>용어 : 박스-젠킨스 모델(Box-Jenkins Model)</p>
 </blockquote>
 
@@ -191,7 +191,135 @@
   <p>포아송 분포</p>
 </blockquote>
 
-<p><img src="/assets/img/20231207/2.png" alt="Alt text" /></p>]]></content><author><name>zagabi</name></author><category term="papers" /><category term="python" /><summary type="html"><![CDATA[용어 : 박스-젠킨스 모델(Box-Jenkins Model)]]></summary></entry><entry><title type="html">Node.js Best Practices</title><link href="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8" rel="alternate" type="text/html" title="Node.js Best Practices" /><published>2023-11-27T00:00:00+09:00</published><updated>2023-11-27T00:00:00+09:00</updated><id>https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8</id><content type="html" xml:base="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8"><![CDATA[<p>Node.js로 서버를 구축할 때 어떤 것을 지키면 좋을까? Best Practices에 대해 알아봅시다.</p>
+<p><img src="/assets/img/20231207/2.png" alt="Alt text" /></p>
+
+<h2 id="오토인코더를-통한-주식-차트-시뮬레이션">오토인코더를 통한 주식 차트 시뮬레이션</h2>
+<p>오토인코더 네트워크는 실제로 인코더와 디코더라는 두 개의 연결된 네트워크 쌍
+<img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*2ijh2-e0PcYgYKbWYkbdsw.png" alt="아키텍처" /></p>
+
+<p>기존 오토인코더의 문제점은 벡터 보간이 용이하지 않을 수 있음.ex) mnist에서 1과 7의 차이</p>
+
+<h3 id="변분-오토인코더variational-autoencoder-vae">변분 오토인코더(Variational Autoencoder, VAE)</h3>
+<p><img src="https://blog.kakaocdn.net/dn/b30Uzl/btrxY4wKngj/SucVwitDrRtQvi1xTHdrR0/img.png" alt="아키텍처" /> <br />
+여기서 나온 것이 바로 변분 오토인코더(Variational Autoencoder, VAE)임. 이는 딥러닝과 확률론을 결합한 생성적 모델 중 하나.<br />
+다음과 같은 구조를 가짐.</p>
+
+<ol>
+  <li>인코더</li>
+  <li>리파라미터화 트릭 - 리파라미터화 트릭(Reparameterization Trick)</li>
+  <li>디코더</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">yfinance</span> <span class="k">as</span> <span class="n">yf</span>
+<span class="kn">import</span> <span class="n">torch</span>
+<span class="kn">import</span> <span class="n">torch.nn</span> <span class="k">as</span> <span class="n">nn</span>
+<span class="kn">import</span> <span class="n">torch.optim</span> <span class="k">as</span> <span class="n">optim</span>
+<span class="kn">from</span> <span class="n">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">TensorDataset</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="n">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>  
+<span class="kn">import</span> <span class="n">quandl</span> 
+<span class="n">quandl_data_apple</span> <span class="o">=</span> <span class="n">quandl</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">WIKI/AAPL</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">quandl_data_amazon</span> <span class="o">=</span> <span class="n">quandl</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">WIKI/AMZN</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">quandl_data_msft</span> <span class="o">=</span> <span class="n">quandl</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">WIKI/MSFT</span><span class="sh">"</span><span class="p">)</span> 
+<span class="c1"># 1980 ~ 2018 까지의 데이터 : 고가 중심으로.
+</span><span class="n">msft_high_raw</span> <span class="o">=</span> <span class="p">(</span><span class="n">quandl_data_msft</span><span class="p">[</span><span class="sh">'</span><span class="s">High</span><span class="sh">'</span><span class="p">].</span><span class="n">values</span><span class="p">).</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> 
+<span class="n">msft_high</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="p">.</span><span class="nf">normalize</span><span class="p">(</span><span class="n">msft_high_raw</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="sh">'</span><span class="s">max</span><span class="sh">'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">msft_high</span> <span class="o">=</span> <span class="n">msft_high</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">msft_high</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],)</span>
+<span class="n">msft_max_high</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">msft_high_raw</span><span class="p">)</span>
+ 
+<span class="n">apple_high_raw</span> <span class="o">=</span> <span class="p">(</span><span class="n">quandl_data_apple</span><span class="p">[</span><span class="sh">'</span><span class="s">High</span><span class="sh">'</span><span class="p">].</span><span class="n">values</span><span class="p">).</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">apple_high</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="p">.</span><span class="nf">normalize</span><span class="p">(</span><span class="n">apple_high_raw</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="sh">'</span><span class="s">max</span><span class="sh">'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">apple_high</span> <span class="o">=</span> <span class="n">apple_high</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">apple_high</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],)</span>
+<span class="n">apple_max_high</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">apple_high_raw</span><span class="p">)</span>
+ 
+<span class="n">amazon_high_raw</span> <span class="o">=</span> <span class="p">(</span><span class="n">quandl_data_amazon</span><span class="p">[</span><span class="sh">'</span><span class="s">High</span><span class="sh">'</span><span class="p">].</span><span class="n">values</span><span class="p">).</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">amazon_high</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="p">.</span><span class="nf">normalize</span><span class="p">(</span><span class="n">amazon_high_raw</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="sh">'</span><span class="s">max</span><span class="sh">'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">amazon_high</span> <span class="o">=</span> <span class="n">amazon_high</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">amazon_high</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],)</span>
+<span class="n">amazon_max_high</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">amazon_high_raw</span><span class="p">)</span>
+
+<span class="c1"># Generate samples
+</span><span class="k">def</span> <span class="nf">generate_samples</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">):</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="n">sample_size</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">sample_size</span><span class="p">:(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">sample_size</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)])</span>
+
+<span class="n">test_data_points</span> <span class="o">=</span> <span class="mi">365</span>
+<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">365</span>
+ 
+<span class="k">def</span> <span class="nf">split_data</span><span class="p">(</span><span class="n">high</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">high</span><span class="p">[:</span><span class="o">-</span><span class="n">test_data_points</span><span class="p">],</span> <span class="n">high</span><span class="p">[</span><span class="o">-</span><span class="n">test_data_points</span><span class="p">:]</span>
+
+<span class="n">msft_high_train</span><span class="p">,</span> <span class="n">msft_high_test</span> <span class="o">=</span> <span class="nf">split_data</span><span class="p">(</span><span class="n">msft_high</span><span class="p">)</span>
+<span class="n">X_msft_train</span> <span class="o">=</span> <span class="nf">generate_samples</span><span class="p">(</span><span class="n">msft_high_train</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+<span class="n">X_msft_test</span> <span class="o">=</span> <span class="nf">generate_samples</span><span class="p">(</span><span class="n">msft_high_test</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+ 
+<span class="n">X_msft_train_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">(</span><span class="n">X_msft_train</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">X_msft_test_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">(</span><span class="n">X_msft_test</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
+ 
+<span class="k">class</span> <span class="nc">VAE</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">latent_dim</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">(</span><span class="n">VAE</span><span class="p">,</span> <span class="n">self</span><span class="p">).</span><span class="nf">__init__</span><span class="p">()</span>
+        <span class="c1"># Encoder
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">fc21</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">latent_dim</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">fc22</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">latent_dim</span><span class="p">)</span>
+        <span class="c1"># Decoder
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">fc3</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="n">latent_dim</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">fc4</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">input_size</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">h1</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="nf">relu</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">fc21</span><span class="p">(</span><span class="n">h1</span><span class="p">),</span> <span class="n">self</span><span class="p">.</span><span class="nf">fc22</span><span class="p">(</span><span class="n">h1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">reparameterize</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">logvar</span><span class="p">):</span>
+        <span class="n">std</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">logvar</span><span class="p">)</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">randn_like</span><span class="p">(</span><span class="n">std</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mu</span> <span class="o">+</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">std</span>
+
+    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+        <span class="n">h3</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="nf">relu</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">fc3</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tanh</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">fc4</span><span class="p">(</span><span class="n">h3</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">mu</span><span class="p">,</span> <span class="n">logvar</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">reparameterize</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">logvar</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="n">z</span><span class="p">),</span> <span class="n">mu</span><span class="p">,</span> <span class="n">logvar</span>
+ 
+<span class="k">def</span> <span class="nf">loss_function</span><span class="p">(</span><span class="n">recon_x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">logvar</span><span class="p">):</span>
+    <span class="n">BCE</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="nf">mse_loss</span><span class="p">(</span><span class="n">recon_x</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="nf">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">))</span>
+    <span class="n">KLD</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">torch</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">logvar</span> <span class="o">-</span> <span class="n">mu</span><span class="p">.</span><span class="nf">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">logvar</span><span class="p">.</span><span class="nf">exp</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">BCE</span> <span class="o">+</span> <span class="n">KLD</span>
+ 
+<span class="n">model</span> <span class="o">=</span> <span class="nc">VAE</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">latent_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="p">.</span><span class="nc">Adam</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="nf">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="nc">DataLoader</span><span class="p">(</span><span class="nc">TensorDataset</span><span class="p">(</span><span class="n">X_msft_train_tensor</span><span class="p">),</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+ 
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="n">model</span><span class="p">.</span><span class="nf">train</span><span class="p">()</span>
+    <span class="n">train_loss</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">,)</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">train_loader</span><span class="p">):</span>
+        <span class="n">optimizer</span><span class="p">.</span><span class="nf">zero_grad</span><span class="p">()</span>
+        <span class="n">recon_batch</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">logvar</span> <span class="o">=</span> <span class="nf">model</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="nf">loss_function</span><span class="p">(</span><span class="n">recon_batch</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">logvar</span><span class="p">)</span>
+        <span class="n">loss</span><span class="p">.</span><span class="nf">backward</span><span class="p">()</span>
+        <span class="n">train_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="p">.</span><span class="nf">item</span><span class="p">()</span>
+        <span class="n">optimizer</span><span class="p">.</span><span class="nf">step</span><span class="p">()</span>
+ 
+<span class="n">model</span><span class="p">.</span><span class="nf">eval</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">torch</span><span class="p">.</span><span class="nf">no_grad</span><span class="p">():</span>
+    <span class="n">msft_simulated_high</span> <span class="o">=</span> <span class="nf">model</span><span class="p">(</span><span class="n">X_msft_test_tensor</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">numpy</span><span class="p">()</span>
+
+</code></pre></div></div>
+<p><img src="/assets/img/20231207/4.png" alt="Alt text" /></p>
+
+<h3 id="참고자료">참고자료</h3>
+<ul>
+  <li>http://vision-explorer.reactive.ai/#/galaxy?_k=12fku3</li>
+  <li>https://www.youtube.com/watch?v=o_peo6U7IRM&amp;t=375s</li>
+  <li>https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf</li>
+  <li>https://medium.com/@ricardo.vrgl/generating-simulated-stock-price-data-using-a-variational-autoencoder-d18fc79fc623</li>
+</ul>]]></content><author><name>zagabi</name></author><category term="papers" /><category term="python" /><summary type="html"><![CDATA[용어 : 박스-젠킨스 모델(Box-Jenkins Model)]]></summary></entry><entry><title type="html">Node.js Best Practices</title><link href="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8" rel="alternate" type="text/html" title="Node.js Best Practices" /><published>2023-11-27T00:00:00+09:00</published><updated>2023-11-27T00:00:00+09:00</updated><id>https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8</id><content type="html" xml:base="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8"><![CDATA[<p>Node.js로 서버를 구축할 때 어떤 것을 지키면 좋을까? Best Practices에 대해 알아봅시다.</p>
 
 <h2 id="모듈화">모듈화</h2>
 <p>data, db, routes, test, utils 등으로 모듈화를 해야 합니다.</p>
