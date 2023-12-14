@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://genius0928.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://genius0928.github.io//" rel="alternate" type="text/html" /><updated>2023-12-13T10:36:31+09:00</updated><id>https://genius0928.github.io//feed.xml</id><title type="html">천각블로그</title><subtitle>천각블로그에서 발표한 게시글을 소개합니다.</subtitle><author><name>천각</name></author><entry><title type="html">시계열 시뮬레이션 | 실전시계열 분석 4장</title><link href="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8" rel="alternate" type="text/html" title="시계열 시뮬레이션 | 실전시계열 분석 4장" /><published>2023-12-07T00:00:00+09:00</published><updated>2023-12-07T00:00:00+09:00</updated><id>https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8</id><content type="html" xml:base="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://genius0928.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://genius0928.github.io//" rel="alternate" type="text/html" /><updated>2023-12-14T11:25:48+09:00</updated><id>https://genius0928.github.io//feed.xml</id><title type="html">천각블로그</title><subtitle>천각블로그에서 발표한 게시글을 소개합니다.</subtitle><author><name>천각</name></author><entry><title type="html">시계열 시뮬레이션 | 실전시계열 분석 4장</title><link href="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8" rel="alternate" type="text/html" title="시계열 시뮬레이션 | 실전시계열 분석 4장" /><published>2023-12-07T00:00:00+09:00</published><updated>2023-12-07T00:00:00+09:00</updated><id>https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8</id><content type="html" xml:base="https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8"><![CDATA[<blockquote>
   <p>용어 : 박스-젠킨스 모델(Box-Jenkins Model)</p>
 </blockquote>
 
@@ -197,7 +197,7 @@
 <p>오토인코더 네트워크는 실제로 인코더와 디코더라는 두 개의 연결된 네트워크 쌍
 <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*2ijh2-e0PcYgYKbWYkbdsw.png" alt="아키텍처" /></p>
 
-<p>기존 오토인코더의 문제점은 벡터 보간이 용이하지 않을 수 있음.ex) mnist에서 1과 7의 차이</p>
+<p>기존 오토인코더의 문제점은 벡터 보간이 용이하지 않을 수 있음.ex) mnist에서 1과 7의 차이 / 오토인코더는 다음과 같은 큰 특징이 있음.</p>
 
 <h3 id="변분-오토인코더variational-autoencoder-vae">변분 오토인코더(Variational Autoencoder, VAE)</h3>
 <p><img src="https://blog.kakaocdn.net/dn/b30Uzl/btrxY4wKngj/SucVwitDrRtQvi1xTHdrR0/img.png" alt="아키텍처" /> <br />

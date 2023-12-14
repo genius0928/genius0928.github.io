@@ -201,7 +201,8 @@ for taxi_id, activities in first_five_taxis_data.items():
 오토인코더 네트워크는 실제로 인코더와 디코더라는 두 개의 연결된 네트워크 쌍
 ![아키텍처](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*2ijh2-e0PcYgYKbWYkbdsw.png)   
  
-기존 오토인코더의 문제점은 벡터 보간이 용이하지 않을 수 있음.ex) mnist에서 1과 7의 차이
+기존 오토인코더의 문제점은 벡터 보간이 용이하지 않을 수 있음.ex) mnist에서 1과 7의 차이 / 오토인코더는 다음과 같은 큰 특징이 있음. 
+
    
 ### 변분 오토인코더(Variational Autoencoder, VAE)
 ![아키텍처](https://blog.kakaocdn.net/dn/b30Uzl/btrxY4wKngj/SucVwitDrRtQvi1xTHdrR0/img.png)   
@@ -321,6 +322,6 @@ with torch.no_grad():
  - https://www.youtube.com/watch?v=o_peo6U7IRM&t=375s
  - https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf
  - https://medium.com/@ricardo.vrgl/generating-simulated-stock-price-data-using-a-variational-autoencoder-d18fc79fc623
- 
+
 
  
