@@ -10,7 +10,7 @@ authors:
   - you
 code: https://github.com/wnghdcjfe
 tag: python
----
+--- 
 
 > 용어 : 박스-젠킨스 모델(Box-Jenkins Model)
 
