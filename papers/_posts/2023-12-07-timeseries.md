@@ -2,7 +2,7 @@
 layout: post
 research-area: DE/python
 title: 시계열 시뮬레이션 | 실전시계열 분석 4장
-slug: 블로그 
+slug: 2023-12-07-timeseri
 publisher: zagabi 
 published-date: 2023.12.07
 authors:
