@@ -1,15 +1,15 @@
 zagabi:
   korean_name: 주홍철
   profile: zagabi.png 
-  description: 개발왕
+  description: 최고의 개발자
 
 you:
-  korean_name: 유지은
+  korean_name: you
   profile: you.png 
   description: C++ 마스터 
 
 jae:
-  korean_name: 목재민
+  korean_name: jae
   profile: jae.png 
   description: 드립담당
 
@@ -17,3 +17,28 @@ PENEKhun:
   korean_name: 문성훈
   profile: PENEKhun.png 
   description: 천각대표얼굴간판
+
+sanghyeon:
+  korean_name: 김상현
+  profile: sanghyeon.png 
+  description: 프론트엔드
+
+markup:
+  korean_name: 윤희중
+  profile: markup.png 
+  description: 자바스크립트 마스터
+
+bada:
+  korean_name: 바다
+  profile: bada.png 
+  description: 프론트엔드12
+
+taewoo:
+  korean_name: 김태우
+  profile: taewoo.png 
+  description: 리엑트마스터
+
+youngwoo:
+  korean_name: 유영우
+  profile: youngwoo.png 
+  description: 백엔드담당

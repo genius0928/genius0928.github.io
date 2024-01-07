@@ -2,10 +2,10 @@
 천재개발자들의 모각코 모임, 천각의 블로그입니다. 
 
 ## requirement 
- - https://rubyinstaller.org/downloads/
+ - https://rubyinstaller.org/downloads/ (윈도우)
+ - brew install ruby (맥)
  - gem install jekyll bundler
- - bundle install
- - bundle exec jekyll serve
+ - bundle install 
 
 ## 테스팅
 ```
@@ -15,6 +15,9 @@ bundle exec jekyll serve
 ```
 bundle exec jekyll build
 ```  
+
+표랑 그래프 머메이드
+리스트 링크 버그 수정
 
 ## jekyll테마 
 카카오엔터프라이즈테마를 기반으로 만들었습니다. 

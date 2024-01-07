@@ -4,7 +4,23 @@
 		xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	
 	<url>
-		<loc>https://genius0928.github.io//papers/%EB%B8%94%EB%A1%9C%EA%B7%B8</loc>
+		<loc>http://localhost:4000/papers/2023-12-07-timeseri</loc>
+		
+		<lastmod>2023-12-07T00:00:00+09:00</lastmod>
+		
+
+		
+		<changefreq>weekly</changefreq>
+		
+
+		
+		<priority>0.5</priority>
+		
+
+	</url>
+	
+	<url>
+		<loc>http://localhost:4000/papers/2023-11-27-node</loc>
 		
 		<lastmod>2023-11-27T00:00:00+09:00</lastmod>
 		

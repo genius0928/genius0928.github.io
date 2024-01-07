@@ -2,7 +2,7 @@
 layout: post
 research-area: BE/node.js
 title: "Node.js Best Practices"
-slug: 블로그 
+slug: 2023-11-27-node 
 publisher: zagabi 
 published-date: 천각8회차 / 2023.12.02
 authors:
