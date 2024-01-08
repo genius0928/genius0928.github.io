@@ -16,7 +16,7 @@ bundle exec jekyll serve
 bundle exec jekyll build
 ```  
 
-표랑 그래프 머메이드
+표랑 그래프
 리스트 링크 버그 수정
 
 ## jekyll테마 

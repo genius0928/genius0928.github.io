@@ -1,6 +1,25 @@
 ---
 layout: default
 --- 
+
+<!-- START Enable mermaid without jykll plugin -->
+<script src="https://unpkg.com/mermaid@8.9.3/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      mermaid.initialize({
+          startOnLoad: true,
+          theme: "default",
+      });
+
+      var mermaidElements = document.querySelectorAll('.language-mermaid');
+      mermaidElements.forEach(function (element) {
+          window.mermaid.init(undefined, [element]);
+      });
+  });
+</script>
+<!-- Author : @PENEKhun -->
+<!-- END Enable mermaid without jykll plugin -->
+
 <article class="post">
   <header class="post-header">
     <h4 class="catalogue-research-area">{{ page.research-area }}</h4>
